@@ -19,19 +19,19 @@ class BooksController < ApplicationController
 	end
 	
 	def new
-	@book = current_user.books.build
-	@categories = Category.all.map{ |c| [c.name, c.id]}
+		@book = current_user.books.build
+		@categories = Category.all.map{ |c| [c.name, c.id]}
 	end
 	
 	def create
-	@book = current_user.books.build(book_params)
-	@book.category_id = params[:category_id]
+		@book = current_user.books.build(book_params)
+		@book.category_id = params[:category_id]
 
-		if @book.save
-			redirect_to action: "index"
-		else 
-			render 'new'
-		end
+			if @book.save
+				redirect_to action: "index"
+			else 
+				render 'new'
+			end
 	end
 	
 	def edit
